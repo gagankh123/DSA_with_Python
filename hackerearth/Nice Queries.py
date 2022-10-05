@@ -21,8 +21,8 @@ For each query type 2, print in new line, the smallest index x which is greater 
 '''
 
 def user_input():
+    
     '''
-
     N as list length and Q as Number of queries
     T as query type and index as K/Y
 
@@ -44,7 +44,7 @@ def user_input():
                 print(sub_array.index(1) + index)
             else:
                 print(-1)
-    # return A, queries
+    
 
 def nice_query():
 
