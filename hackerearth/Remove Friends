@@ -1,0 +1,64 @@
+'''
+Used double ended linkedlist to solve this problem
+
+https://www.hackerearth.com/practice/data-structures/linked-list/singly-linked-list/practice-problems/algorithm/remove-friends-5/
+'''
+
+
+class Node():
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class LinkedList():
+    def __init__(self):
+        self.head = None
+        self.curr = None
+
+    def push(self, data):
+        node = Node(data)
+        if self.head == None:
+            self.head = node
+        else:
+            node.prev = self.curr
+            self.curr.next = node
+        self.curr = node
+
+    def printList(self):
+        curr = self.head
+        while curr.next != None:
+            print(curr.data, end=" ")
+            curr = curr.next
+
+        print(curr.data)
+    
+    def removeElement(self, n):
+        curr = self.head
+
+        while True:
+            if n == 0 or curr.next == None:
+                break
+            if curr.data < curr.next.data:
+                if curr.prev == None:
+                    self.head = curr.next
+                    curr = self.head
+                    self.head.prev = None
+                else:
+                    curr.next.prev = curr.prev
+                    curr.prev.next = curr.next
+                    curr = curr.prev
+                n = n-1
+            else:
+                curr = curr.next
+
+        self.printList()
+
+testcase = int(input())
+for t in range(testcase):
+    N, K = map(int, input().split(' '))
+    linkedList = LinkedList()
+    for i in input().split(' '):
+        linkedList.push(int(i))
+    
+    linkedList.removeElement(K)
